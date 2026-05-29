@@ -10,13 +10,11 @@
   /* ----------------------------------------------------------
      LINK CONFIG — fill these in when available.
        arxiv : arXiv / preprint URL. Leave "" to hide the button.
-       code  : code repository URL. Leave "" to fall back to a
-               "Code (on request)" mailto to the corresponding author.
+       code  : code repository URL. Leave "" to hide the Code button.
      ---------------------------------------------------------- */
   var LINKS = {
     arxiv: "",
     code: "",
-    corrEmail: "chenxi.liu@utah.edu",
   };
 
   // arXiv: hide unless a URL is set
@@ -25,16 +23,11 @@
     if (LINKS.arxiv) { arxivBtn.href = LINKS.arxiv; }
     else { arxivBtn.remove(); }
   }
-  // Code: real repo if provided, else "on request" email
+  // Code: show only when a repo URL is provided; otherwise hide the button
   var codeBtn = document.getElementById("link-code");
   if (codeBtn) {
-    if (LINKS.code) {
-      codeBtn.href = LINKS.code;
-    } else {
-      codeBtn.href = "mailto:" + LINKS.corrEmail + "?subject=REACT%20code%20request";
-      codeBtn.removeAttribute("target");
-      codeBtn.innerHTML = '<span class="btn-ico">&#128231;</span> Code (on request)';
-    }
+    if (LINKS.code) { codeBtn.href = LINKS.code; }
+    else { codeBtn.remove(); }
   }
 
   /* ---------------- Sticky nav: show after hero, highlight section ---------------- */

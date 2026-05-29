@@ -123,11 +123,14 @@
 
     function build(group) {
       const g = groups[group];
+      // Append the overall average as its own distinct bar instead of a horizontal line
+      const labels = g.labels.concat(["Average"]);
+      const data = g.data.concat([AVG]);
+      const colors = g.data.map(() => C.accent).concat(["#475569"]);
       return {
-        labels: g.labels,
+        labels: labels,
         datasets: [
-          { type: "bar", label: "CRR (%)", data: g.data, backgroundColor: C.accent, borderRadius: 6, order: 2, maxBarThickness: 90, pointStyle: "rect" },
-          { type: "line", label: `Overall average (${AVG}%)`, data: avgLine(g.labels.length), borderColor: "#475569", backgroundColor: "#475569", borderWidth: 2, pointStyle: "line", pointRadius: 0, order: 1 },
+          { label: "CRR (%)", data: data, backgroundColor: colors, borderRadius: 6, maxBarThickness: 90 },
         ],
       };
     }
@@ -139,7 +142,7 @@
         const ctx = chart.ctx;
         const meta = chart.getDatasetMeta(0);
         const ds = chart.data.datasets[0];
-        if (!meta || ds.type !== "bar") return;
+        if (!meta || !ds) return;
         ctx.save();
         ctx.fillStyle = C.ink;
         ctx.font = "700 12px 'Inter', sans-serif";
@@ -154,6 +157,7 @@
     };
 
     charts.conditions = new Chart(el, {
+      type: "bar",
       data: build("time"),
       options: {
         responsive: true, maintainAspectRatio: false, animation: anim,
@@ -162,7 +166,7 @@
           y: { min: 84, max: 85.4, grid: { color: C.grid }, title: { display: true, text: "Collision-rate reduction (%)" }, ticks: { callback: (v) => v + "%" } },
           x: { grid: { display: false } },
         },
-        plugins: { legend: { position: "top", labels: { usePointStyle: true, pointStyleWidth: 30 } } },
+        plugins: { legend: { display: false } },
       },
       plugins: [condValueLabels],
     });
