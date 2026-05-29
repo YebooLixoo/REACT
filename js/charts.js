@@ -127,21 +127,44 @@
         labels: g.labels,
         datasets: [
           { type: "bar", label: "CRR (%)", data: g.data, backgroundColor: C.accent, borderRadius: 6, order: 2, maxBarThickness: 90, pointStyle: "rect" },
-          { type: "line", label: `Overall average (${AVG}%)`, data: avgLine(g.labels.length), borderColor: C.danger, backgroundColor: C.danger, borderWidth: 2, borderDash: [6, 5], pointStyle: "line", pointRadius: 0, order: 1 },
+          { type: "line", label: `Overall average (${AVG}%)`, data: avgLine(g.labels.length), borderColor: "#475569", backgroundColor: "#475569", borderWidth: 2, pointStyle: "line", pointRadius: 0, order: 1 },
         ],
       };
     }
+
+    // Draw the exact CRR value above each bar (no datalabels plugin is vendored, so do it inline)
+    const condValueLabels = {
+      id: "condValueLabels",
+      afterDatasetsDraw(chart) {
+        const ctx = chart.ctx;
+        const meta = chart.getDatasetMeta(0);
+        const ds = chart.data.datasets[0];
+        if (!meta || ds.type !== "bar") return;
+        ctx.save();
+        ctx.fillStyle = C.ink;
+        ctx.font = "700 12px 'Inter', sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "bottom";
+        meta.data.forEach((bar, i) => {
+          if (ds.data[i] == null) return;
+          ctx.fillText(ds.data[i].toFixed(2) + "%", bar.x, bar.y - 7);
+        });
+        ctx.restore();
+      },
+    };
 
     charts.conditions = new Chart(el, {
       data: build("time"),
       options: {
         responsive: true, maintainAspectRatio: false, animation: anim,
+        layout: { padding: { top: 18 } },
         scales: {
           y: { min: 84, max: 85.4, grid: { color: C.grid }, title: { display: true, text: "Collision-rate reduction (%)" }, ticks: { callback: (v) => v + "%" } },
           x: { grid: { display: false } },
         },
         plugins: { legend: { position: "top", labels: { usePointStyle: true, pointStyleWidth: 30 } } },
       },
+      plugins: [condValueLabels],
     });
 
     // toggle handling

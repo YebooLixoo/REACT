@@ -361,6 +361,7 @@ a:hover { text-decoration: underline; }
   /* Matte the paper figures in white so their content isn't flush against the frame edge */
   padding: clamp(0.85rem, 2.4vw, 2rem);
 }
+.figure-sm img { max-width: min(100%, 560px); }
 .figure img.zoomable { transition: box-shadow 0.2s; }
 .js .figure img.zoomable { cursor: zoom-in; } /* only show the zoom affordance when JS can open the lightbox */
 .figure img.zoomable:hover { box-shadow: var(--shadow-lg); }
