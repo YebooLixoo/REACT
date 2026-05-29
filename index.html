@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REACT · Edge-based VLA for Real-time Autonomous Vehicle Accident Avoidance</title>
+  <meta name="description" content="REACT: a V2X-integrated, edge-deployable Vision-Language-Action trajectory planner that achieves an 84.9% collision-rate reduction at 0.57s latency on the Jetson AGX Orin. Published in Engineering Applications of Artificial Intelligence (Elsevier, 2026)." />
+
+  <!-- Social / link previews. Replace USERNAME once the GitHub Pages URL is known. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="REACT · Edge-based VLA for Real-time Autonomous Vehicle Accident Avoidance" />
+  <meta property="og:description" content="V2X-integrated, edge-deployable Vision-Language-Action trajectory planner. 84.9% collision-rate reduction at 0.57s on Jetson AGX Orin. EAAI 2026." />
+  <meta property="og:url" content="https://USERNAME.github.io/REACT/" />
+  <meta property="og:image" content="https://USERNAME.github.io/REACT/static/images/fig1_overview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="canonical" href="https://USERNAME.github.io/REACT/" />
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ============================ STICKY NAV ============================ -->
+  <nav id="navbar" class="navbar" aria-label="Section navigation">
+    <div class="nav-inner">
+      <a href="#top" class="nav-brand">REACT</a>
+      <ul class="nav-links">
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#qualitative">Qualitative</a></li>
+        <li><a href="#ablations">Ablations</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#bibtex">BibTeX</a></li>
+      </ul>
+      <a href="https://doi.org/10.1016/j.engappai.2026.115186" class="nav-cta" target="_blank" rel="noopener">Read paper</a>
+    </div>
+  </nav>
+
+  <!-- ============================ HERO ============================ -->
+  <header id="top" class="hero">
+    <div class="container">
+      <p class="venue-badge">
+        <span class="dot"></span>
+        Engineering Applications of Artificial Intelligence · Elsevier · Volume 180 (2026) 115186
+      </p>
+
+      <h1 class="hero-title">
+        Edge-based Multimodal Sensor Data Fusion with a
+        <span class="accent">Vision&#8211;Language&#8211;Action</span> Model for
+        Real-time Autonomous Vehicle Accident Avoidance
+      </h1>
+
+      <p class="hero-sub">REACT — Real-time Edge-based Autonomous Co-pilot Trajectory planner</p>
+      <p class="hero-desc">A V2X-connected, edge-deployable Vision&#8211;Language&#8211;Action co-pilot that reasons over
+        infrastructure hazard alerts and onboard vision to steer autonomous vehicles away from imminent collisions &mdash;
+        in real time.</p>
+
+      <!-- Authors -->
+      <ul class="authors">
+        <li><span class="author">Fengze Yang</span><sup>1</sup></li>
+        <li><span class="author">Bo Yu</span><sup>1</sup></li>
+        <li><span class="author">Yang Zhou</span><sup>2</sup></li>
+        <li><span class="author">Xuewen Luo</span><sup>2</sup></li>
+        <li><span class="author">Zhengzhong Tu</span><sup>3</sup></li>
+        <li>
+          <a class="author corr" href="mailto:chenxi.liu@utah.edu">Chenxi Liu</a><sup>1,&#9993;</sup>
+        </li>
+      </ul>
+
+      <!-- Affiliations -->
+      <ul class="affiliations">
+        <li><sup>1</sup>Department of Civil &amp; Environmental Engineering, University of Utah</li>
+        <li><sup>2</sup>Zachry Department of Civil &amp; Environmental Engineering, Texas A&amp;M University</li>
+        <li><sup>3</sup>Department of Computer Science &amp; Engineering, Texas A&amp;M University</li>
+      </ul>
+      <p class="corr-note"><span aria-hidden="true">&#9993;</span> Corresponding author: <a href="mailto:chenxi.liu@utah.edu">chenxi.liu@utah.edu</a></p>
+
+      <!-- Link buttons -->
+      <div class="hero-links">
+        <a id="link-doi" class="btn btn-primary" href="https://doi.org/10.1016/j.engappai.2026.115186" target="_blank" rel="noopener">
+          <span class="btn-ico">&#128196;</span> Paper (DOI)
+        </a>
+        <a id="link-pdf" class="btn" href="static/pdf/REACT.pdf" target="_blank" rel="noopener">
+          <span class="btn-ico">&#11015;</span> PDF
+        </a>
+        <!-- arXiv: hidden automatically by main.js until a URL is provided in LINKS.arxiv -->
+        <a id="link-arxiv" class="btn" href="#" target="_blank" rel="noopener">
+          <span class="btn-ico">&#128209;</span> arXiv
+        </a>
+        <!-- Code: main.js sets a real repo URL if provided, else falls back to "on request" email -->
+        <a id="link-code" class="btn" href="#" target="_blank" rel="noopener">
+          <span class="btn-ico">&#128187;</span> Code
+        </a>
+        <a id="link-dataset" class="btn" href="https://deepaccident.github.io" target="_blank" rel="noopener">
+          <span class="btn-ico">&#128202;</span> Dataset
+        </a>
+        <a class="btn" href="#bibtex">
+          <span class="btn-ico">&#10078;</span> BibTeX
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+  <!-- ============================ METRIC STRIP ============================ -->
+  <section class="metrics" aria-label="Headline results">
+    <div class="container metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value"><span class="count" data-target="84.9" data-decimals="1">0</span><span class="unit">%</span></div>
+        <div class="metric-label">Collision-rate reduction</div>
+        <div class="metric-sub">vs. baseline planner</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span class="count" data-target="50.6" data-decimals="1">0</span><span class="unit">%</span></div>
+        <div class="metric-label">Video Panoptic Quality</div>
+        <div class="metric-sub">state-of-the-art on DeepAccident</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span class="count" data-target="0.57" data-decimals="2">0</span><span class="unit">s</span></div>
+        <div class="metric-label">Inference latency</div>
+        <div class="metric-sub">on NVIDIA Jetson AGX Orin</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value"><span class="count" data-target="57.9" data-decimals="1">0</span></div>
+        <div class="metric-label">mIoU</div>
+        <div class="metric-sub">highest among V2X fusion methods</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ ABSTRACT ============================ -->
+  <section id="abstract" class="section">
+    <div class="container narrow">
+      <h2 class="section-title">Abstract</h2>
+      <p class="abstract-text">
+        Autonomous driving (AD) systems relying solely on onboard sensors may fail to detect distant or occluded
+        hazards, potentially causing preventable collisions; however, existing transformer-based
+        Vehicle-to-Everything (V2X) approaches either lack effective multimodal fusion and reasoning or struggle to
+        meet real-time performance requirements under complex traffic conditions. This paper proposes the
+        <strong>Real-time Edge-based Autonomous Co-pilot Trajectory planner (REACT)</strong>, a V2X-integrated
+        trajectory optimization framework for AD based on a fine-tuned lightweight Vision&#8211;Language&#8211;Action
+        (VLA) model explicitly grounded in low-level control generation. REACT integrates infrastructure-provided
+        hazard alerts with onboard sensor data, capturing surrounding traffic dynamics and vehicle intents through
+        visual embeddings, interpreting numerical data from symbolic inputs, and employing contextual reasoning to
+        predict control-aware residual action sequences. To enable robust real-time deployment on edge devices, REACT
+        employs a <strong>Residual Trajectory Fusion (RTF)</strong> module that predicts discrete residual controls
+        and fuses them with a nominal plan, together with edge-adaptation strategies to reduce model complexity and
+        improve inference efficiency. Evaluated on the DeepAccident benchmark, REACT achieves state-of-the-art
+        performance, an <strong>84.9% collision rate reduction</strong>, a <strong>50.6% Video Panoptic Quality</strong>,
+        and a <strong>0.57-second inference latency</strong> on the Jetson AGX Orin. Ablation studies validate the
+        contribution of each input modality, architectural component, and edge adaptation strategy. These results
+        highlight the effectiveness of lightweight control-grounded VLA reasoning for real-time cooperative planning on
+        edge platforms and underscore the potential of language-guided residual control generation for improving
+        traffic safety.
+      </p>
+      <p class="keywords">
+        <span>Keywords:</span> Control sequence prediction &middot; Transportation safety &middot;
+        Connected and autonomous vehicles &middot; Edge computing
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ CONTRIBUTIONS ============================ -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Key Contributions</h2>
+      <div class="cards-4">
+        <article class="contrib-card">
+          <div class="contrib-ico">&#127959;&#65039;</div>
+          <h3>Architectural</h3>
+          <p>REACT — a V2X-integrated autonomous-driving framework built on a customized VLA model that directly
+            generates low-level vehicle controls for safer, context-aware driving.</p>
+        </article>
+        <article class="contrib-card">
+          <div class="contrib-ico">&#129504;</div>
+          <h3>Methodological</h3>
+          <p>A lightweight VLA reasoning pipeline that jointly grounds perception and action to predict steering and
+            acceleration sequences, with a novel <strong>Residual Trajectory Fusion</strong> module for efficiency and
+            accuracy.</p>
+        </article>
+        <article class="contrib-card">
+          <div class="contrib-ico">&#9889;</div>
+          <h3>Edge Optimization</h3>
+          <p>Targeted edge-adaptation strategies — prompt optimization and parameter-efficient fine-tuning — streamline
+            complexity and enable real-time control inference on resource-constrained devices.</p>
+        </article>
+        <article class="contrib-card">
+          <div class="contrib-ico">&#128663;</div>
+          <h3>Practical Applicability</h3>
+          <p>Validated across diverse traffic scenarios, weather, lighting and infrastructure configurations,
+            demonstrating robust decision-making in realistic V2X-enabled deployment.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ METHOD ============================ -->
+  <section id="method" class="section">
+    <div class="container">
+      <h2 class="section-title">Method</h2>
+      <p class="section-lead">
+        REACT runs alongside an existing autonomous-driving stack and turns multimodal V2X inputs into a stable,
+        executable control sequence through five stages: <strong>Data Acquisition</strong> &rarr;
+        <strong>Data Structuring</strong> &rarr; <strong>Task Alignment</strong> &rarr;
+        <strong>Task Projection Enhancement</strong> &rarr; <strong>Residual Trajectory Fusion</strong>.
+      </p>
+
+      <figure class="figure">
+        <img src="static/images/fig1_overview.png" alt="Overview of REACT: an RSU hazard alert and multi-view camera frames feed an autonomous-driving algorithm and downstream accident detection; the REACT branch performs data acquisition, structuring, task alignment, a fine-tuned VLA, task projection enhancement and residual trajectory fusion to produce an optimized future control sequence." class="zoomable" />
+        <figcaption><strong>Figure 1.</strong> Overview of REACT. Infrastructure hazard alerts and onboard camera frames
+          are fused; when downstream accident detection flags risk, REACT generates an optimized future control
+          sequence that is sent to the vehicle control module.</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <img src="static/images/fig2_architecture.png" alt="Detailed REACT architecture showing data acquisition, BEV-based data structuring, spatial-temporal task alignment, control-sequence reconstruction, a fine-tuned VLA with chain-of-thought reasoning producing residual control classes, and a residual trajectory fusion stage sending controls to the vehicle." class="zoomable" />
+        <figcaption><strong>Figure 2.</strong> REACT architecture. Bird's-Eye-View perception and structured symbolic
+          inputs are aligned through control-aware prompt engineering; a fine-tuned VLA with chain-of-thought supervision
+          predicts residual control classes, which the RTF module fuses with a nominal plan.</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <img src="static/images/fig3_edge_adaptation.png" alt="Edge computing adaptation pipeline: a VLM backbone is processed through quantization and attention enhancement, with parallel token-length reduction and BEV-size reduction, yielding an adaptive model." class="zoomable" />
+        <figcaption><strong>Figure 3.</strong> Edge-computing adaptation. Quantization, attention enhancement, token-length
+          reduction and BEV-size reduction streamline the model for real-time inference on edge hardware.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ RESULTS ============================ -->
+  <section id="results" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Experiment Results</h2>
+      <p class="section-lead">
+        Evaluated on the <strong>DeepAccident</strong> benchmark against representative V2X fusion methods. REACT
+        delivers the best motion-prediction quality while running an order of magnitude faster than 7B-scale baselines.
+      </p>
+
+      <!-- Chart 1: method comparison -->
+      <div class="chart-block">
+        <h3 class="chart-title">State-of-the-art motion prediction</h3>
+        <p class="chart-note">Mean IoU and Video Panoptic Quality vs. prior V2X fusion methods (1&nbsp;s observation,
+          2&nbsp;s prediction). Higher is better.</p>
+        <div class="chart-wrap"><canvas id="chartMethods" aria-label="Bar chart comparing mIoU and VPQ across methods; underlying data in the table below."></canvas></div>
+        <details class="data-fallback"><summary>View data (Table 3)</summary>
+          <table>
+            <thead><tr><th>Method</th><th>mIoU &uarr;</th><th>VPQ &uarr;</th></tr></thead>
+            <tbody>
+              <tr><td>V2XFormer + Average</td><td>52.1</td><td>39.5</td></tr>
+              <tr><td>V2XFormer + DiscoNet</td><td>54.2</td><td>42.0</td></tr>
+              <tr><td>V2XFormer + V2X-ViT</td><td>55.1</td><td>43.2</td></tr>
+              <tr><td>V2XFormer + CoBEVT</td><td>56.2</td><td>44.0</td></tr>
+              <tr><td>AccidentGPT</td><td>57.3</td><td>45.2</td></tr>
+              <tr><td><strong>REACT (ours)</strong></td><td><strong>57.9</strong></td><td><strong>50.6</strong></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <!-- Chart 2: accuracy-latency tradeoff -->
+      <div class="chart-block">
+        <h3 class="chart-title">Accuracy&ndash;latency&ndash;safety trade-off</h3>
+        <p class="chart-note">Collision-rate reduction vs. average inference latency on the Jetson AGX Orin across VLM
+          backbones. REACT's chosen <strong>SmolVLM2-500M</strong> matches the safety of 7B models at a fraction of the
+          latency &mdash; the only backbone fast enough for real-time edge deployment.
+          <span class="chart-fine">Backbone metrics in the table below are measured at the 10-step (1&nbsp;s) horizon and
+          are not directly comparable to the cross-method mIoU/VPQ above; the vertical axis is zoomed to 84&ndash;87.5%
+          to resolve the small spread in collision-rate reduction.</span></p>
+        <div class="chart-wrap"><canvas id="chartTradeoff" aria-label="Scatter plot of collision-rate reduction versus inference latency; underlying data in the table below."></canvas></div>
+        <details class="data-fallback"><summary>View data (Table 4)</summary>
+          <table>
+            <thead><tr><th>Backbone</th><th>CRR (%) &uarr;</th><th>Latency (s) &darr;</th><th>mIoU</th><th>VPQ</th></tr></thead>
+            <tbody>
+              <tr><td>Qwen2.5-VL-3B</td><td>85.8</td><td>1.866</td><td>78.5</td><td>78.3</td></tr>
+              <tr><td>LLaVA-1.5-7B</td><td>86.3</td><td>2.938</td><td>82.4</td><td>79.8</td></tr>
+              <tr><td>Qwen2.5-VL-7B</td><td>86.7</td><td>2.090</td><td>80.1</td><td>80.2</td></tr>
+              <tr><td><strong>SmolVLM2-500M (ours)</strong></td><td>84.9</td><td><strong>0.570</strong></td><td>79.6</td><td>76.0</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <!-- Chart 3: robustness across conditions -->
+      <div class="chart-block">
+        <h3 class="chart-title">Robust across conditions</h3>
+        <p class="chart-note">Collision-rate reduction stays tightly clustered around the <strong>84.93% average</strong>
+          (dashed line) across time of day, weather and location &mdash; evidence of consistent, generalizable safety.</p>
+        <div class="chart-toggle" role="group" aria-label="Condition category">
+          <button class="toggle-btn active" type="button" data-group="time" aria-pressed="true">Time of day</button>
+          <button class="toggle-btn" type="button" data-group="weather" aria-pressed="false">Weather</button>
+          <button class="toggle-btn" type="button" data-group="location" aria-pressed="false">Location</button>
+        </div>
+        <div class="chart-wrap"><canvas id="chartConditions" aria-label="Bar chart of collision-rate reduction across conditions; underlying data in the table below."></canvas></div>
+        <details class="data-fallback"><summary>View data (Table 5)</summary>
+          <table>
+            <thead><tr><th>Category</th><th>Condition</th><th>CRR (%)</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="3">Time of day</td><td>Noon</td><td>85.01</td></tr>
+              <tr><td>Sunset</td><td>84.88</td></tr>
+              <tr><td>Night</td><td>84.90</td></tr>
+              <tr><td rowspan="4">Weather</td><td>Clear</td><td>85.12</td></tr>
+              <tr><td>Cloudy</td><td>84.76</td></tr>
+              <tr><td>Rainy</td><td>84.81</td></tr>
+              <tr><td>Wet</td><td>84.83</td></tr>
+              <tr><td rowspan="4">Location</td><td>Highway</td><td>84.70</td></tr>
+              <tr><td>Downtown</td><td>84.65</td></tr>
+              <tr><td>Residential</td><td>85.10</td></tr>
+              <tr><td>Rural</td><td>85.00</td></tr>
+              <tr><td><strong>Overall</strong></td><td><strong>Average</strong></td><td><strong>84.93</strong></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <!-- Chart 4: inference breakdown -->
+      <div class="chart-block">
+        <h3 class="chart-title">Where the 0.57&nbsp;s goes</h3>
+        <p class="chart-note">Module-wise share of the 574.5&nbsp;ms total inference time (10-step, 1&nbsp;s horizon).
+          The VLA stages dominate, while REACT's lightweight pre/post-processing keeps overhead negligible.</p>
+        <div class="chart-wrap chart-wrap-doughnut"><canvas id="chartBreakdown" aria-label="Doughnut chart of inference-time breakdown by module; underlying data in the table below."></canvas></div>
+        <details class="data-fallback"><summary>View data (Table 2)</summary>
+          <table>
+            <thead><tr><th>Module</th><th>Time (ms)</th><th>Share</th></tr></thead>
+            <tbody>
+              <tr><td>Vision encoding (embedding + encoder)</td><td>243.6</td><td>42.4%</td></tr>
+              <tr><td>Text&ndash;vision fusion &amp; LLM inference</td><td>256.2</td><td>44.6%</td></tr>
+              <tr><td>Output decoding</td><td>48.2</td><td>8.4%</td></tr>
+              <tr><td>BEV preprocessing</td><td>20.8</td><td>3.5%</td></tr>
+              <tr><td>Residual control classification (GMM)</td><td>5.7</td><td>1.0%</td></tr>
+              <tr><td>Control reconstruction</td><td>0.04</td><td>&lt;0.1%</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>574.5</strong></td><td><strong>100%</strong></td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ QUALITATIVE ============================ -->
+  <section id="qualitative" class="section">
+    <div class="container">
+      <h2 class="section-title">Qualitative Results</h2>
+      <p class="section-lead">
+        Across eight accident-prone scenarios, REACT anticipates hazards earlier and produces smoother avoidance
+        maneuvers and safer stopping behavior than DiscoNet, V2X-ViT and CoBEVT &mdash; in both direct-accident
+        (a&ndash;d) and secondary-risk (e&ndash;h) cases.
+      </p>
+      <figure class="figure">
+        <img src="static/images/fig4_qualitative.png" alt="Eight bird's-eye-view panels comparing predicted trajectories. REACT trajectories anticipate accidents earlier and steer or stop more smoothly than V2X-ViT, DiscoNet and CoBEVT, staying closer to the ground-truth safe path and away from threat trajectories." class="zoomable" />
+        <figcaption><strong>Figure 4.</strong> Qualitative trajectory comparison in accident-prone scenarios. (a&ndash;d)
+          ego vehicle directly involved in different accident types; (e&ndash;h) ego vehicle facing secondary risks as a
+          following vehicle. REACT consistently shows earlier anticipation, smoother avoidance and safer stopping.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ ABLATIONS ============================ -->
+  <section id="ablations" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Ablation Studies</h2>
+      <p class="section-lead">
+        Ablations isolate three design choices: the RTF module &amp; CoT-SFT (chain-of-thought supervised fine-tuning),
+        the input modalities, and edge-adaptation strategies.
+      </p>
+
+      <!-- Chart 5: modality ablation -->
+      <div class="chart-block">
+        <h3 class="chart-title">Every input modality matters</h3>
+        <p class="chart-note">Removing any input degrades performance; dropping the <strong>control sequence</strong>
+          collapses collision-rate reduction from 84.9% to 51.7%, confirming that control-aware grounding is central to
+          safe planning.</p>
+        <div class="chart-wrap"><canvas id="chartAblation" aria-label="Grouped bar chart of metrics when removing each input modality; underlying data in the table below."></canvas></div>
+        <details class="data-fallback"><summary>View data (Table 8)</summary>
+          <table>
+            <thead><tr><th>Configuration</th><th>VPQ</th><th>mIoU</th><th>CRR (%)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Full REACT</strong></td><td>50.6</td><td>57.9</td><td>84.9</td></tr>
+              <tr><td>&minus; Visual frames</td><td>45.8</td><td>54.6</td><td>61.2</td></tr>
+              <tr><td>&minus; RSU hazard</td><td>46.4</td><td>53.9</td><td>67.1</td></tr>
+              <tr><td>&minus; Control sequence</td><td>32.2</td><td>38.2</td><td>51.7</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <!-- Ablation figures -->
+      <div class="fig-grid-2">
+        <figure class="figure">
+          <img src="static/images/fig7_motion_horizon.png" alt="Two line charts of mIoU and VPQ versus prediction horizon from 0.25 to 2 seconds for SFT, RTF+SFT and RTF+CoT-SFT; RTF+CoT-SFT tracks the strongest SFT curve while staying far cheaper to run." class="zoomable" />
+          <figcaption><strong>Figure 7.</strong> Motion-prediction metrics over a 2&nbsp;s horizon. RTF&nbsp;+&nbsp;CoT-SFT
+            recovers SFT-level accuracy while cutting latency by over 60%.</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="static/images/fig6_bev_prune.png" alt="Bar chart of VPQ and inference time for 256M and 500M VLM sizes under different pruning rates; the lightly pruned 500M model balances accuracy and speed best." class="zoomable" />
+          <figcaption><strong>Figure 6.</strong> Impact of BEV size and pruning. A lightly pruned 500M model preserves
+            accuracy and efficiency; aggressive pruning is counterproductive.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="figure">
+        <img src="static/images/fig5_error_dist.png" alt="Box-and-whisker plots of steering and acceleration MAE and RMSE for SFT, RTF+SFT and RTF+CoT-SFT; RTF+CoT-SFT tightens error distributions, especially steering RMSE." class="zoomable" />
+        <figcaption><strong>Figure 5.</strong> Distribution of control-prediction errors. CoT supervision tightens
+          interquartile ranges and lowers median errors, mitigating discretization error from RTF.</figcaption>
+      </figure>
+
+      <p class="ablation-takeaway">
+        <strong>Takeaways.</strong> The RTF module with CoT supervision attains SFT-level accuracy (mIoU&nbsp;57.85,
+        VPQ&nbsp;50.59) while reducing 10-step latency from 1.43&nbsp;s to <strong>0.57&nbsp;s</strong> (&gt;60%) at
+        &lt;0.1% accuracy cost. Among edge-adaptation choices, token length dominates the latency budget, while moderate
+        BEV resolution and quantization preserve safety-critical accuracy.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ DEMO VIDEO (PLACEHOLDER) ============================ -->
+  <section id="demo" class="section">
+    <div class="container narrow">
+      <h2 class="section-title">Demo Video</h2>
+      <p class="section-lead">A demonstration of REACT avoiding accidents in simulated V2X scenarios is on the way.</p>
+
+      <!--
+        ============================================================
+        DEMO VIDEO HOOK — replace this placeholder when ready.
+        Option A (self-hosted file): drop the file in static/video/ then use:
+          <video controls poster="static/images/fig1_overview.png" style="width:100%;height:100%">
+            <source src="static/video/demo.mp4" type="video/mp4" />
+          </video>
+        Option B (YouTube/Vimeo): replace with an <iframe ... allowfullscreen></iframe>
+        ============================================================
+      -->
+      <div class="video-placeholder" id="videoPlaceholder">
+        <div class="video-placeholder-inner">
+          <div class="play-badge" aria-hidden="true">&#9654;</div>
+          <p class="vp-title">Demo video coming soon</p>
+          <p class="vp-sub">This space is reserved for the REACT demonstration reel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ BIBTEX ============================ -->
+  <section id="bibtex" class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title">BibTeX</h2>
+      <p class="section-lead">If you find this work useful, please cite:</p>
+      <div class="bibtex-block">
+        <button class="copy-btn" id="copyBibtex" type="button" aria-label="Copy BibTeX to clipboard">Copy</button>
+        <pre id="bibtexContent">@article{Yang2026REACT,
+  title   = {Edge-based multimodal sensor data fusion with Vision-Language-Action (VLA)
+             model for real-time autonomous vehicle accident avoidance},
+  author  = {Yang, Fengze and Yu, Bo and Zhou, Yang and Luo, Xuewen and Tu, Zhengzhong and Liu, Chenxi},
+  journal = {Engineering Applications of Artificial Intelligence},
+  volume  = {180},
+  pages   = {115186},
+  year    = {2026},
+  publisher = {Elsevier},
+  doi     = {10.1016/j.engappai.2026.115186}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-cite">Fengze Yang, Bo Yu, Yang Zhou, Xuewen Luo, Zhengzhong Tu, Chenxi Liu.
+        <em>Edge-based multimodal sensor data fusion with Vision-Language-Action (VLA) model for real-time autonomous
+        vehicle accident avoidance.</em> Engineering Applications of Artificial Intelligence 180 (2026) 115186.</p>
+      <p class="footer-meta">
+        &copy; 2026 Elsevier Ltd. &middot;
+        <a href="https://doi.org/10.1016/j.engappai.2026.115186" target="_blank" rel="noopener">DOI: 10.1016/j.engappai.2026.115186</a>
+        &middot; <a href="https://www.elsevier.com/locate/engappai" target="_blank" rel="noopener">Journal</a>
+      </p>
+      <p class="footer-note">Project page &mdash; figures &copy; the authors / Elsevier, reproduced for academic
+        dissemination. Built as a static site for GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <script src="js/chart.umd.min.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
