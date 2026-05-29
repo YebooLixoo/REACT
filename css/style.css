@@ -218,9 +218,7 @@ a:hover { text-decoration: underline; }
   font-size: 0.88rem;
   max-width: 760px;
 }
-.affiliations li { display: inline; }
-.affiliations li::after { content: " · "; color: var(--border); }
-.affiliations li:last-child::after { content: ""; }
+.affiliations li { display: block; line-height: 1.55; }
 .corr-note { color: var(--muted); font-size: 0.82rem; margin: 0.2rem 0 0; }
 
 .hero-links {
@@ -282,7 +280,7 @@ a:hover { text-decoration: underline; }
 .metric-sub { color: #dbeafe; font-size: 0.78rem; margin-top: 0.15rem; }
 
 /* ============================ SECTIONS ============================ */
-.section { padding: var(--sp-6) 0; }
+.section { padding: clamp(1.9rem, 3.6vw, 2.85rem) 0; }
 .section-alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .section-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
@@ -352,12 +350,15 @@ a:hover { text-decoration: underline; }
 .figure img {
   max-width: 100%;
   height: auto;
+  /* Cap height so each figure + its caption fits in a single screenful (click to zoom for detail) */
+  max-height: 62vh;
+  width: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: #fff;
   box-shadow: var(--shadow);
   /* Matte the paper figures in white so their content isn't flush against the frame edge */
-  padding: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(0.85rem, 2.4vw, 2rem);
 }
 .figure img.zoomable { transition: box-shadow 0.2s; }
 .js .figure img.zoomable { cursor: zoom-in; } /* only show the zoom affordance when JS can open the lightbox */
