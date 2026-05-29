@@ -300,7 +300,7 @@ a:hover { text-decoration: underline; }
 .section-lead {
   text-align: left;
   color: var(--fg-soft);
-  max-width: 74ch;
+  max-width: none;
   margin: 1.4rem 0 2.4rem;
   font-size: 1.02rem;
 }
@@ -368,10 +368,12 @@ a:hover { text-decoration: underline; }
   margin-top: 0.9rem;
   font-size: 0.88rem;
   color: var(--muted);
-  max-width: 80ch;
+  /* Match the figure's max width and left-align, so the caption sits left under the centered image */
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.55;
+  text-align: left;
 }
 .figure figcaption strong { color: var(--fg-soft); }
 .fig-grid-2 {
