@@ -77,10 +77,10 @@
     if (!el) return;
     // x = latency (s), y = CRR (%)
     const models = [
-      { n: "Qwen2.5-VL-3B", x: 1.866, y: 85.8, c: C.slate2, r: 8 },
-      { n: "LLaVA-1.5-7B", x: 2.938, y: 86.3, c: C.slate2, r: 8 },
-      { n: "Qwen2.5-VL-7B", x: 2.090, y: 86.7, c: C.slate2, r: 8 },
-      { n: "SmolVLM2-500M (ours)", x: 0.570, y: 84.9, c: C.accent, r: 12 },
+      { n: "Qwen2.5-VL-3B", x: 1.866, y: 85.8, c: "#f59e0b", r: 9 },
+      { n: "LLaVA-1.5-7B", x: 2.938, y: 86.3, c: "#10b981", r: 9 },
+      { n: "Qwen2.5-VL-7B", x: 2.090, y: 86.7, c: "#8b5cf6", r: 9 },
+      { n: "SmolVLM2-500M (ours)", x: 0.570, y: 84.9, c: C.accent, r: 13 },
     ];
     charts.tradeoff = new Chart(el, {
       type: "scatter",
@@ -126,8 +126,8 @@
       return {
         labels: g.labels,
         datasets: [
-          { type: "bar", label: "CRR (%)", data: g.data, backgroundColor: C.accent, borderRadius: 6, order: 2, maxBarThickness: 90 },
-          { type: "line", label: `Overall average (${AVG}%)`, data: avgLine(g.labels.length), borderColor: C.danger, borderWidth: 2, borderDash: [6, 5], pointRadius: 0, order: 1 },
+          { type: "bar", label: "CRR (%)", data: g.data, backgroundColor: C.accent, borderRadius: 6, order: 2, maxBarThickness: 90, pointStyle: "rect" },
+          { type: "line", label: `Overall average (${AVG}%)`, data: avgLine(g.labels.length), borderColor: C.danger, backgroundColor: C.danger, borderWidth: 2, borderDash: [6, 5], pointStyle: "line", pointRadius: 0, order: 1 },
         ],
       };
     }
@@ -140,7 +140,7 @@
           y: { min: 84, max: 85.4, grid: { color: C.grid }, title: { display: true, text: "Collision-rate reduction (%)" }, ticks: { callback: (v) => v + "%" } },
           x: { grid: { display: false } },
         },
-        plugins: { legend: { position: "top" } },
+        plugins: { legend: { position: "top", labels: { usePointStyle: true, pointStyleWidth: 30 } } },
       },
     });
 
