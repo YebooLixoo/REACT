@@ -171,12 +171,12 @@ a:hover { text-decoration: underline; }
   background: var(--accent); display: inline-block;
 }
 .hero-title {
-  font-size: clamp(1.7rem, 4.2vw, 3.1rem);
-  line-height: 1.12;
+  font-size: clamp(1.8rem, 4.6vw, 3.25rem);
+  line-height: 1.14;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 0 auto 0.6rem;
-  max-width: 17ch;
+  max-width: 34ch;
 }
 .hero-title .accent {
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -356,6 +356,8 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   background: #fff;
   box-shadow: var(--shadow);
+  /* Matte the paper figures in white so their content isn't flush against the frame edge */
+  padding: clamp(1rem, 3vw, 2.5rem);
 }
 .figure img.zoomable { transition: box-shadow 0.2s; }
 .js .figure img.zoomable { cursor: zoom-in; } /* only show the zoom affordance when JS can open the lightbox */
