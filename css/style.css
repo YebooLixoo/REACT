@@ -296,19 +296,11 @@ a:hover { text-decoration: underline; }
   text-align: left;
   margin: 0 0 0.5rem;
 }
-.section-title::after {
-  content: "";
-  display: block;
-  width: 52px; height: 4px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 2px;
-  margin: 0.7rem 0 0;
-}
 .section-lead {
   text-align: left;
   color: var(--fg-soft);
   max-width: none;
-  margin: 1.4rem 0 2.4rem;
+  margin: 1rem 0 2.4rem;
   font-size: 1.02rem;
 }
 
