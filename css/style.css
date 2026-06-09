@@ -404,11 +404,14 @@ a:hover { text-decoration: underline; }
 .figure-sm img { max-width: min(100%, 560px); }
 /* Qualitative comparison: break out wider than the text column so the 8-panel detail is legible */
 .figure-wide {
-  width: min(92vw, 1100px);
+  width: fit-content;
+  max-width: min(92vw, 1100px);
   margin-left: 50%;
   transform: translateX(-50%);
 }
-.figure-wide img { max-width: 100%; max-height: 74vh; }
+.figure-wide img { max-width: 100%; max-height: 74vh; display: block; }
+/* Left-align the caption to the figure's (image's) left edge instead of centering it */
+.figure-wide figcaption { max-width: 800px; margin-left: 0; margin-right: 0; }
 .figure img.zoomable { transition: box-shadow 0.2s; }
 .js .figure img.zoomable { cursor: zoom-in; } /* only show the zoom affordance when JS can open the lightbox */
 .figure img.zoomable:hover { box-shadow: var(--shadow-lg); }
