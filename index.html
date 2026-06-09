@@ -55,9 +55,6 @@
         Real-time Autonomous Vehicle Accident Avoidance
       </h1>
 
-      <p class="hero-sub">A V2X co-pilot that reasons about danger like a language model &mdash; then steers clear of it in
-        real time, on the car's own chip.</p>
-
       <!-- Authors -->
       <ul class="authors">
         <li><span class="author">Fengze Yang</span><sup>1</sup></li>
@@ -137,16 +134,16 @@
     <div class="container narrow">
       <h2 class="section-title">Why this paper</h2>
       <p class="section-lead">
-        <strong>TL;DR&nbsp;&mdash;</strong> Self-driving cars that see only through their own sensors are blind to what's
-        around the corner. REACT gives the car a second brain: a lightweight Vision&#8211;Language&#8211;Action model that
-        fuses roadside hazard alerts with the car's own cameras, reasons about the threat in plain language, and outputs the
-        actual steering and acceleration to avoid it. It cuts collisions by <strong>84.9%</strong>, sets a new state of the
-        art on the DeepAccident benchmark, and runs in <strong>0.57&nbsp;seconds</strong> on a single NVIDIA Jetson AGX Orin
-        &mdash; rivaling the safety of models <strong>14&times; its size</strong> at a fraction of the latency.
+        Self-driving cars that see only through their own sensors are blind to what's around the corner. REACT gives the
+        car a second brain: a lightweight Vision&#8211;Language&#8211;Action model that fuses roadside hazard alerts with the
+        car's own cameras, reasons about the threat in plain language, and outputs the actual steering and acceleration to
+        avoid it. It cuts collisions by <strong>84.9%</strong>, sets a new state of the art on the DeepAccident benchmark,
+        and runs in <strong>0.57&nbsp;seconds</strong> on a single NVIDIA Jetson AGX Orin, rivaling the safety of models
+        <strong>14&times; its size</strong> at a fraction of the latency.
       </p>
 
       <div class="callout">
-        <strong>The gap REACT closes.</strong> Until now, connected-driving systems forced a choice &mdash; careful reasoning
+        <strong>The gap REACT closes.</strong> Until now, connected-driving systems forced a choice: careful reasoning
         <em>or</em> real-time speed on the hardware that ships in a car, never both. REACT is the first to deliver both.
       </div>
     </div>
@@ -155,22 +152,22 @@
       <div class="cards-4">
         <article class="contrib-card">
           <h3>A reasoner that drives</h3>
-          <p>A fine-tuned Vision&#8211;Language&#8211;Action model that doesn't just describe the scene &mdash; it outputs the
-            real low-level steering and acceleration the car executes, reasoning step by step about the hazard first.</p>
+          <p>A fine-tuned Vision&#8211;Language&#8211;Action model that goes beyond describing the scene to output the real
+            low-level steering and acceleration the car executes, reasoning step by step about the hazard first.</p>
         </article>
         <article class="contrib-card">
           <h3>Residual Trajectory Fusion</h3>
           <p>Instead of betting the whole plan on the model, REACT predicts a small discrete correction and fuses it with the
-            car's nominal trajectory &mdash; accuracy with a safety net.</p>
+            car's nominal trajectory, combining accuracy with a built-in safety net.</p>
         </article>
         <article class="contrib-card">
           <h3>Real-time on the edge</h3>
           <p>Quantization, shorter prompts and parameter-efficient fine-tuning shrink a capable VLA to 0.57&nbsp;s inference
-            on automotive hardware &mdash; no datacenter required.</p>
+            on automotive hardware, with no datacenter required.</p>
         </article>
         <article class="contrib-card">
           <h3>Safety that holds up</h3>
-          <p>84.9% fewer collisions, steady across day and night, four weather types and four road types &mdash; not one
+          <p>84.9% fewer collisions, steady across day and night, four weather types and four road types, not a single
             cherry-picked scenario.</p>
         </article>
       </div>
@@ -192,7 +189,7 @@
 
       <!--
         ============================================================
-        DEMO VIDEO HOOK — replace this placeholder when ready.
+        DEMO VIDEO HOOK: replace this placeholder when ready.
         Option A (self-hosted file): drop the file in static/video/ then use:
           <video controls poster="static/images/fig1_overview.png" style="width:100%;height:100%">
             <source src="static/video/demo.mp4" type="video/mp4" />
@@ -224,8 +221,8 @@
       <p class="section-lead">
         Every dot is a Vision&#8211;Language&#8211;Action backbone we tested, plotted by safety against speed. The
         7-billion-parameter giants are safe but far too slow for a moving car. REACT's <strong>500M-parameter</strong>
-        backbone reaches nearly the same collision-rate reduction in just <strong>0.57&nbsp;s</strong> &mdash; roughly
-        4&ndash;5&times; faster &mdash; the only point fast enough for real-time edge use. On DeepAccident it also sets a new state of the art:
+        backbone reaches nearly the same collision-rate reduction in just <strong>0.57&nbsp;s</strong>, roughly four to five
+        times faster, and is the only point fast enough for real-time edge use. On DeepAccident it also sets a new state of the art:
         <strong>50.6% Video Panoptic Quality</strong> vs. 45.2% for the next best.
       </p>
 
@@ -233,7 +230,7 @@
         <h3 class="chart-title">7B-model safety at 500M-model speed</h3>
         <p class="chart-note">Collision-rate reduction vs. average inference latency on the Jetson AGX Orin across VLM
           backbones. REACT's chosen <strong>SmolVLM2-500M</strong> rivals the safety of 7B models at a fraction of the
-          latency &mdash; the only backbone fast enough for real-time edge deployment.
+          latency, and is the only backbone fast enough for real-time edge deployment.
           <span class="chart-fine">Backbone metrics in the table below are measured at the 10-step (1&nbsp;s) horizon; the
           vertical axis is zoomed to 84&ndash;87.5% to resolve the small spread in collision-rate reduction.</span></p>
         <div class="chart-wrap"><canvas id="chartTradeoff" aria-label="Scatter plot of collision-rate reduction versus inference latency; underlying data in the table below."></canvas></div>
@@ -257,19 +254,19 @@
     <div class="container">
       <h2 class="section-title">The full story is in the paper</h2>
       <p class="section-lead">
-        This page is the highlights reel. The paper has the engine room &mdash; the architecture, the math, the ablations,
+        This page is the highlights reel. The paper has the engine room: the architecture, the math, the ablations,
         and the design decisions behind every number above.
       </p>
       <div class="cards-4">
         <article class="contrib-card">
           <h3>The architecture, end to end</h3>
-          <p>The full pipeline &mdash; BEV perception, chain-of-thought supervision, and how Residual Trajectory Fusion
+          <p>The full pipeline: BEV perception, chain-of-thought supervision, and how Residual Trajectory Fusion
             discretizes and fuses controls.<span class="paper-ref">Figures&nbsp;1&ndash;2</span></p>
         </article>
         <article class="contrib-card">
           <h3>How we hit 0.57&nbsp;s</h3>
-          <p>The edge-adaptation recipe &mdash; quantization, attention enhancement, token-length and BEV-size reduction
-            &mdash; and where every millisecond goes.<span class="paper-ref">Figure&nbsp;3, Table&nbsp;2</span></p>
+          <p>The edge-adaptation recipe (quantization, attention enhancement, token-length and BEV-size reduction) and
+            where every millisecond goes.<span class="paper-ref">Figure&nbsp;3, Table&nbsp;2</span></p>
         </article>
         <article class="contrib-card">
           <h3>Why every input matters</h3>
@@ -277,7 +274,7 @@
         </article>
         <article class="contrib-card">
           <h3>Robust across the real world</h3>
-          <p>Per-condition results across time of day, weather and location &mdash; the complete tables behind the 84.93%
+          <p>Per-condition results across time of day, weather and location, in the full tables behind the 84.93%
             average.<span class="paper-ref">Table&nbsp;5</span></p>
         </article>
       </div>
