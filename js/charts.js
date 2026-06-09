@@ -20,7 +20,7 @@
   };
 
   Chart.defaults.font.family =
-    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+    "'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
   Chart.defaults.color = "#475569";
   Chart.defaults.font.size = 13;
 

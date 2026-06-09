@@ -34,8 +34,11 @@
   --max-width: 1080px;
   --max-narrow: 760px;
 
-  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Nerfies-style type system: Google Sans for display/headings, Noto Sans for body */
+  --font: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-head: "Google Sans", "Noto Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --link: hsl(204, 86%, 53%); /* Bulma link-blue, as Nerfies uses */
 }
 
 * { box-sizing: border-box; }
@@ -52,7 +55,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* Skip link (keyboard / screen-reader bypass) */
@@ -105,7 +108,8 @@ a:hover { text-decoration: underline; }
   gap: 1.25rem;
 }
 .nav-brand {
-  font-weight: 900;
+  font-family: var(--font-head);
+  font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--fg);
   font-size: 1.05rem;
@@ -171,9 +175,10 @@ a:hover { text-decoration: underline; }
   background: var(--accent); display: inline-block;
 }
 .hero-title {
+  font-family: var(--font-head);
   font-size: clamp(1.8rem, 4.6vw, 3.25rem);
   line-height: 1.14;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0 auto 0.6rem;
   max-width: 34ch;
@@ -207,8 +212,8 @@ a:hover { text-decoration: underline; }
   margin: 0 auto 0.9rem;
   max-width: 800px;
 }
-.authors .author { font-weight: 600; font-size: 1.05rem; color: var(--fg); }
-.authors a.author { color: var(--accent); }
+.authors .author { font-family: var(--font-head); font-weight: 500; font-size: 1.05rem; color: var(--fg); }
+.authors a.author { color: var(--link); }
 .authors sup { color: var(--muted); font-weight: 500; }
 .affiliations {
   list-style: none;
@@ -232,9 +237,9 @@ a:hover { text-decoration: underline; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #fff;
-  color: var(--fg);
-  border: 1px solid var(--border);
+  background: #363636;
+  color: #fff;
+  border: 1px solid #363636;
   padding: 0.6rem 1.15rem;
   border-radius: 999px;
   font-weight: 600;
@@ -242,7 +247,7 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
 }
-.btn:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow); border-color: #cbd5e1; }
+.btn:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow); background: #2b2b2b; border-color: #2b2b2b; }
 .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
 .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 .btn-ico { font-size: 0.95em; line-height: 1; }
@@ -272,8 +277,9 @@ a:hover { text-decoration: underline; }
 }
 .metric-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .metric-value {
+  font-family: var(--font-head);
   font-size: clamp(2rem, 4.5vw, 3rem);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
@@ -290,8 +296,9 @@ a:hover { text-decoration: underline; }
 .section { padding: clamp(1.9rem, 3.6vw, 2.85rem) 0; }
 .section-alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .section-title {
+  font-family: var(--font-head);
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
   text-align: left;
   margin: 0 0 0.5rem;
@@ -338,7 +345,7 @@ a:hover { text-decoration: underline; }
 }
 .contrib-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .contrib-ico { font-size: 1.8rem; margin-bottom: 0.6rem; }
-.contrib-card h3 { margin: 0 0 0.5rem; font-size: 1.1rem; font-weight: 700; }
+.contrib-card h3 { margin: 0 0 0.5rem; font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; }
 .contrib-card p { margin: 0; color: var(--fg-soft); font-size: 0.92rem; line-height: 1.6; }
 
 /* Figures */
@@ -392,7 +399,7 @@ a:hover { text-decoration: underline; }
   box-shadow: var(--shadow-sm);
   margin: 2rem 0;
 }
-.chart-title { margin: 0 0 0.3rem; font-size: 1.2rem; font-weight: 700; }
+.chart-title { margin: 0 0 0.3rem; font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; }
 .chart-note { margin: 0 0 1.1rem; color: var(--muted); font-size: 0.9rem; }
 .chart-note strong { color: var(--fg-soft); }
 .chart-fine { display: block; margin-top: 0.5rem; font-size: 0.82rem; color: var(--muted); }
@@ -481,7 +488,7 @@ a:hover { text-decoration: underline; }
   font-size: 1.3rem; padding-left: 4px;
   box-shadow: var(--shadow);
 }
-.vp-title { font-weight: 700; color: var(--fg-soft); font-size: 1.1rem; margin: 0; }
+.vp-title { font-family: var(--font-head); font-weight: 700; color: var(--fg-soft); font-size: 1.1rem; margin: 0; }
 .vp-sub { font-size: 0.88rem; margin: 0.3rem 0 0; }
 
 /* ============================ BIBTEX ============================ */
@@ -568,6 +575,8 @@ a:hover { text-decoration: underline; }
 }
 @media (max-width: 560px) {
   .hero { padding: 5rem 0 3.5rem; }
+  /* Shrink the long title so it wraps within narrow viewports without clipping */
+  .hero-title { font-size: clamp(1.4rem, 6.4vw, 1.85rem); overflow-wrap: break-word; }
   .venue-badge {
     max-width: 100%;
     white-space: normal;
