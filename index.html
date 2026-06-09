@@ -142,7 +142,7 @@
         fuses roadside hazard alerts with the car's own cameras, reasons about the threat in plain language, and outputs the
         actual steering and acceleration to avoid it. It cuts collisions by <strong>84.9%</strong>, sets a new state of the
         art on the DeepAccident benchmark, and runs in <strong>0.57&nbsp;seconds</strong> on a single NVIDIA Jetson AGX Orin
-        &mdash; matching the safety of models <strong>14&times; its size</strong> at a fraction of the latency.
+        &mdash; rivaling the safety of models <strong>14&times; its size</strong> at a fraction of the latency.
       </p>
 
       <div class="callout">
@@ -224,15 +224,15 @@
       <p class="section-lead">
         Every dot is a Vision&#8211;Language&#8211;Action backbone we tested, plotted by safety against speed. The
         7-billion-parameter giants are safe but far too slow for a moving car. REACT's <strong>500M-parameter</strong>
-        backbone lands their safety at <strong>0.57&nbsp;s</strong> &mdash; roughly 4&ndash;5&times; faster &mdash; the only
-        point fast enough for real-time edge use. On DeepAccident it also sets a new state of the art:
+        backbone reaches nearly the same collision-rate reduction in just <strong>0.57&nbsp;s</strong> &mdash; roughly
+        4&ndash;5&times; faster &mdash; the only point fast enough for real-time edge use. On DeepAccident it also sets a new state of the art:
         <strong>50.6% Video Panoptic Quality</strong> vs. 45.2% for the next best.
       </p>
 
       <div class="chart-block">
         <h3 class="chart-title">7B-model safety at 500M-model speed</h3>
         <p class="chart-note">Collision-rate reduction vs. average inference latency on the Jetson AGX Orin across VLM
-          backbones. REACT's chosen <strong>SmolVLM2-500M</strong> matches the safety of 7B models at a fraction of the
+          backbones. REACT's chosen <strong>SmolVLM2-500M</strong> rivals the safety of 7B models at a fraction of the
           latency &mdash; the only backbone fast enough for real-time edge deployment.
           <span class="chart-fine">Backbone metrics in the table below are measured at the 10-step (1&nbsp;s) horizon; the
           vertical axis is zoomed to 84&ndash;87.5% to resolve the small spread in collision-rate reduction.</span></p>
