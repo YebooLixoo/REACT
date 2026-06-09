@@ -75,7 +75,6 @@ a:hover { text-decoration: underline; }
   outline-offset: 2px;
   border-radius: 4px;
 }
-.metrics :focus-visible,
 .lightbox :focus-visible,
 .bibtex-block :focus-visible { outline-color: #fff; }
 /* Skip-link target receives programmatic focus; don't show a ring on the container */
@@ -150,7 +149,8 @@ a:hover { text-decoration: underline; }
   background:
     radial-gradient(60rem 30rem at 50% -10%, var(--accent-soft) 0%, rgba(219, 234, 254, 0) 60%),
     linear-gradient(180deg, #fbfcfe 0%, #ffffff 100%);
-  border-bottom: 1px solid var(--border);
+  /* No hard divider: the gradient fades to white so the floating metric cards bridge the seam */
+  padding-bottom: 4.75rem;
 }
 .venue-badge {
   display: inline-flex;
@@ -247,11 +247,14 @@ a:hover { text-decoration: underline; }
 .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 .btn-ico { font-size: 0.95em; line-height: 1; }
 
-/* ============================ METRIC STRIP ============================ */
+/* ============================ METRIC STRIP (floating cards) ============================ */
 .metrics {
-  background: linear-gradient(135deg, #0f1f4b 0%, #15307a 55%, #1d4ed8 100%);
-  padding: 2.6rem 0;
-  color: #fff;
+  background: transparent;
+  /* Lift the cards up so they straddle the seam between the hero and the page */
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 5;
+  padding: 0;
 }
 .metrics-grid {
   display: grid;
@@ -260,24 +263,28 @@ a:hover { text-decoration: underline; }
 }
 .metric-card {
   text-align: center;
-  padding: 0.5rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.55rem 1rem 1.45rem;
+  transition: transform 0.18s, box-shadow 0.2s;
 }
-.metric-card:last-child { border-right: none; }
+.metric-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .metric-value {
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  background: linear-gradient(90deg, #fff, #bfdbfe);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .metric-value .unit { font-size: 0.55em; margin-left: 0.05em; }
-.metric-label { margin-top: 0.5rem; font-weight: 600; font-size: 0.98rem; }
-.metric-sub { color: #dbeafe; font-size: 0.78rem; margin-top: 0.15rem; }
+.metric-label { margin-top: 0.55rem; font-weight: 700; font-size: 0.98rem; color: var(--fg); }
+.metric-sub { color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; }
 
 /* ============================ SECTIONS ============================ */
 .section { padding: clamp(1.9rem, 3.6vw, 2.85rem) 0; }
@@ -576,15 +583,12 @@ a:hover { text-decoration: underline; }
 /* ============================ RESPONSIVE ============================ */
 @media (max-width: 900px) {
   .cards-4 { grid-template-columns: repeat(2, 1fr); }
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
-  .metric-card:nth-child(2) { border-right: none; }
-  .metric-card { border-bottom: 1px solid rgba(255,255,255,0.12); padding-bottom: 1.5rem; }
-  .metric-card:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0.5rem; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-links { display: none; }
   .fig-grid-2 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
-  .hero { padding: 5rem 0 2.5rem; }
+  .hero { padding: 5rem 0 3.5rem; }
   .venue-badge {
     max-width: 100%;
     white-space: normal;
@@ -595,7 +599,6 @@ a:hover { text-decoration: underline; }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
   .metrics-grid { grid-template-columns: 1fr; }
-  .metric-card { border-right: none; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
   .chart-block { padding: 1.1rem; }
