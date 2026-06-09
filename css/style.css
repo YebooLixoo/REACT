@@ -437,19 +437,6 @@ a:hover { text-decoration: underline; }
 .data-fallback th { background: var(--surface); font-weight: 700; }
 .data-fallback tbody tr:nth-child(even) { background: var(--surface); }
 
-.ablation-takeaway,
-.callout {
-  background: var(--accent-soft);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius-sm);
-  padding: 1.1rem 1.3rem;
-  color: var(--fg-soft);
-  font-size: 0.95rem;
-  margin-top: 2rem;
-}
-.ablation-takeaway strong,
-.callout strong { color: var(--accent-dark); }
-
 /* Reader-facing "go deeper" reference tag inside the paper-teaser cards */
 .paper-ref {
   display: block;
