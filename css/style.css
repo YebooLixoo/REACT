@@ -319,14 +319,12 @@ a:hover { text-decoration: underline; }
   margin-top: 2rem;
 }
 .abstract-text strong { color: var(--fg); }
-.keywords {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
+.footer-keywords {
+  margin: 0.7rem 0 0;
+  font-size: 0.8rem;
   color: var(--muted);
-  border-top: 1px solid var(--border);
-  padding-top: 1rem;
 }
-.keywords span { font-weight: 700; color: var(--fg-soft); }
+.footer-keywords span { font-weight: 700; color: var(--fg-soft); }
 
 /* Contributions */
 .cards-4 {
