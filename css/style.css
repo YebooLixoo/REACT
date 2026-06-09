@@ -348,6 +348,42 @@ a:hover { text-decoration: underline; }
 .contrib-card h3 { margin: 0 0 0.5rem; font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; }
 .contrib-card p { margin: 0; color: var(--fg-soft); font-size: 0.92rem; line-height: 1.6; }
 
+/* "What's new" — numbered & borderless, deliberately distinct from the boxed metric/feature cards */
+.whats-new {
+  list-style: none;
+  counter-reset: wn;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 2.75rem;
+  margin: 2.4rem 0 0;
+  padding: 0;
+}
+.whats-new li::before {
+  counter-increment: wn;
+  content: counter(wn, decimal-leading-zero);
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.7rem;
+}
+.whats-new h3 {
+  font-family: var(--font-head);
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--fg);
+}
+.whats-new p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
+
 /* Figures */
 .figure {
   margin: 2.2rem 0;
@@ -586,6 +622,7 @@ a:hover { text-decoration: underline; }
   }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
+  .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
