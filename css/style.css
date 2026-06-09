@@ -402,16 +402,17 @@ a:hover { text-decoration: underline; }
   padding: clamp(0.85rem, 2.4vw, 2rem);
 }
 .figure-sm img { max-width: min(100%, 560px); }
-/* Qualitative comparison: break out wider than the text column so the 8-panel detail is legible */
-.figure-wide {
-  width: fit-content;
-  max-width: min(92vw, 1100px);
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-.figure-wide img { max-width: 100%; max-height: 74vh; display: block; }
-/* Left-align the caption to the figure's (image's) left edge instead of centering it */
-.figure-wide figcaption { max-width: 800px; margin-left: 0; margin-right: 0; }
+/* Qualitative comparison: fill the content column (wider than the 800px cap on normal figures)
+   so the 8-panel detail is legible. The image and caption both span the full column width, so
+   their left edges line up and the whole figure stays centered with the rest of the page —
+   no viewport breakout (fragile on mobile) and no height cap (which would shrink the image
+   narrower than its column and break the caption alignment). */
+.figure-wide { width: 100%; }
+.figure-wide img { width: 100%; max-width: none; height: auto; display: block; }
+/* Caption spans the image width and left-aligns to its left edge instead of centering.
+   .figure.figure-wide (specificity 0,0,2,1) beats the later equal-specificity `.figure figcaption`
+   rule below, which otherwise re-centers the caption and caps it at 800px. */
+.figure.figure-wide figcaption { max-width: 100%; margin-left: 0; margin-right: 0; }
 .figure img.zoomable { transition: box-shadow 0.2s; }
 .js .figure img.zoomable { cursor: zoom-in; } /* only show the zoom affordance when JS can open the lightbox */
 .figure img.zoomable:hover { box-shadow: var(--shadow-lg); }
