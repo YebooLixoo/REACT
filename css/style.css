@@ -438,7 +438,8 @@ a:hover { text-decoration: underline; }
 .data-fallback th { background: var(--surface); font-weight: 700; }
 .data-fallback tbody tr:nth-child(even) { background: var(--surface); }
 
-.ablation-takeaway {
+.ablation-takeaway,
+.callout {
   background: var(--accent-soft);
   border-left: 4px solid var(--accent);
   border-radius: var(--radius-sm);
@@ -447,7 +448,26 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
   margin-top: 2rem;
 }
-.ablation-takeaway strong { color: var(--accent-dark); }
+.ablation-takeaway strong,
+.callout strong { color: var(--accent-dark); }
+
+/* Reader-facing "go deeper" reference tag inside the paper-teaser cards */
+.paper-ref {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Centered call-to-action button row (reuses .btn / .btn-primary) */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 2.4rem;
+}
 
 /* ============================ VIDEO PLACEHOLDER ============================ */
 .video-placeholder {
