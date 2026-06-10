@@ -382,39 +382,6 @@ a:hover { text-decoration: underline; }
 }
 .whats-new p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
 
-/* "For more details" — soft boxed cards, each with a tinted footer strip naming the figure/table
-   reference. The boxed/footer treatment sets it apart from the borderless .whats-new grid above. */
-.paper-cards {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin: 2.4rem 0 0;
-  padding: 0;
-}
-.paper-cards li {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden; /* clip the footer tint to the rounded corners */
-  transition: transform 0.18s, box-shadow 0.2s;
-}
-.paper-cards li:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-.pc-body { flex: 1; padding: 1.5rem 1.4rem 1.2rem; }
-.pc-body h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem; color: var(--fg); }
-.pc-body p { margin: 0; color: var(--fg-soft); font-size: 0.92rem; line-height: 1.6; }
-.pc-foot {
-  padding: 0.7rem 1.4rem;
-  background: rgba(37, 99, 235, 0.06);
-  border-top: 1px solid var(--border);
-  font-size: 0.78rem;
-  color: var(--muted);
-}
-.pc-foot span { font-family: var(--mono); font-weight: 600; color: var(--accent); }
-
 /* Figures */
 .figure {
   margin: 2.2rem 0;
@@ -667,7 +634,6 @@ a:hover { text-decoration: underline; }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
   .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
-  .paper-cards { grid-template-columns: 1fr; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
