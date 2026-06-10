@@ -326,25 +326,6 @@ a:hover { text-decoration: underline; }
 }
 .footer-keywords span { font-weight: 700; color: var(--fg-soft); }
 
-/* Keyword/topic chips shown above "Why this paper" */
-.topic-tags {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin: 0 0 2rem;
-  padding: 0;
-}
-.topic-tags li {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--fg-soft);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-}
-
 /* Contributions */
 .cards-4 {
   display: grid;
