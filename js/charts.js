@@ -57,7 +57,7 @@
         responsive: true, maintainAspectRatio: false, animation: anim,
         scales: {
           x: { min: 0, max: 3.25, grid: { color: C.grid }, title: { display: true, text: "Average inference latency (s)  —  lower is better" } },
-          y: { min: 84, max: 87.5, grid: { color: C.grid }, title: { display: true, text: "Collision-rate reduction (%)  —  higher is better" } },
+          y: { min: 80, max: 90, grid: { color: C.grid }, title: { display: true, text: "Collision-rate reduction (%)  —  higher is better" } },
         },
         plugins: {
           legend: { position: "top" },

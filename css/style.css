@@ -32,7 +32,6 @@
   --shadow-lg: 0 18px 48px rgba(15, 23, 42, 0.14);
 
   --max-width: 1080px;
-  --max-narrow: 760px;
 
   /* Nerfies-style type system: Google Sans for display/headings, Noto Sans for body */
   --font: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -84,7 +83,6 @@ a:hover { text-decoration: underline; }
 #main:focus { outline: none; }
 
 .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
-.narrow { max-width: var(--max-narrow); }
 
 /* ============================ NAVBAR ============================ */
 .navbar {
@@ -311,14 +309,6 @@ a:hover { text-decoration: underline; }
   font-size: 1.02rem;
 }
 
-/* Abstract */
-.abstract-text {
-  font-size: 1.06rem;
-  color: var(--fg-soft);
-  text-align: justify;
-  margin-top: 2rem;
-}
-.abstract-text strong { color: var(--fg); }
 .footer-keywords {
   margin: 0.7rem 0 0;
   font-size: 0.8rem;
@@ -326,25 +316,6 @@ a:hover { text-decoration: underline; }
 }
 .footer-keywords span { font-weight: 700; color: var(--fg-soft); }
 
-/* Contributions */
-.cards-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  margin-top: 2.4rem;
-}
-.contrib-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem 1.35rem;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.18s, box-shadow 0.2s;
-}
-.contrib-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.contrib-ico { font-size: 1.8rem; margin-bottom: 0.6rem; }
-.contrib-card h3 { margin: 0 0 0.5rem; font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; }
-.contrib-card p { margin: 0; color: var(--fg-soft); font-size: 0.92rem; line-height: 1.6; }
 
 /* "What's new" — numbered & borderless, deliberately distinct from the boxed metric/feature cards */
 .whats-new {
@@ -421,7 +392,8 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   font-size: 0.82rem;
   color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  /* blue->dark-blue (not cyan) so the white number keeps >=5:1 contrast at every point */
+  background: linear-gradient(135deg, var(--accent), #1d4ed8);
   border-radius: 50%;
 }
 .roadmap h3 {
@@ -452,7 +424,6 @@ a:hover { text-decoration: underline; }
   /* Matte the paper figures in white so their content isn't flush against the frame edge */
   padding: clamp(0.85rem, 2.4vw, 2rem);
 }
-.figure-sm img { max-width: min(100%, 560px); }
 /* Qualitative comparison: fill the content column (wider than the 800px cap on normal figures)
    so the 8-panel detail is legible. The image and caption both span the full column width, so
    their left edges line up and the whole figure stays centered with the rest of the page —
@@ -481,12 +452,6 @@ a:hover { text-decoration: underline; }
   text-align: left;
 }
 .figure figcaption strong { color: var(--fg-soft); }
-.fig-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-.fig-grid-2 .figure { margin: 1.5rem 0; }
 
 /* ============================ CHARTS ============================ */
 .chart-block {
@@ -500,24 +465,7 @@ a:hover { text-decoration: underline; }
 .chart-title { margin: 0 0 0.3rem; font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; }
 .chart-note { margin: 0 0 1.1rem; color: var(--muted); font-size: 0.9rem; }
 .chart-note strong { color: var(--fg-soft); }
-.chart-fine { display: block; margin-top: 0.5rem; font-size: 0.82rem; color: var(--muted); }
 .chart-wrap { position: relative; height: 380px; }
-.chart-wrap-doughnut { height: 420px; }
-.chart-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-.toggle-btn {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  color: var(--fg-soft);
-  font-family: var(--font);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.4rem 0.95rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-.toggle-btn:hover { border-color: #cbd5e1; }
-.toggle-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
 .data-fallback { margin-top: 1.1rem; }
 .data-fallback summary {
@@ -541,24 +489,6 @@ a:hover { text-decoration: underline; }
 }
 .data-fallback th { background: var(--surface); font-weight: 700; }
 .data-fallback tbody tr:nth-child(even) { background: var(--surface); }
-
-/* Reader-facing "go deeper" reference tag inside the paper-teaser cards */
-.paper-ref {
-  display: block;
-  margin-top: 0.6rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-/* Centered call-to-action button row (reuses .btn / .btn-primary) */
-.cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  justify-content: center;
-  margin-top: 2.4rem;
-}
 
 /* ============================ VIDEO PLACEHOLDER ============================ */
 .video-placeholder {
@@ -630,9 +560,7 @@ a:hover { text-decoration: underline; }
   padding: 2.6rem 0;
   text-align: center;
 }
-.footer-cite { color: var(--fg-soft); font-size: 0.9rem; max-width: 80ch; margin: 0 auto 0.8rem; }
 .footer-meta { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.6rem; }
-.footer-note { color: var(--muted); font-size: 0.78rem; margin: 0; }
 
 /* ============================ LIGHTBOX ============================ */
 .lightbox {
@@ -666,10 +594,8 @@ a:hover { text-decoration: underline; }
 
 /* ============================ RESPONSIVE ============================ */
 @media (max-width: 900px) {
-  .cards-4 { grid-template-columns: repeat(2, 1fr); }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-links { display: none; }
-  .fig-grid-2 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .hero { padding: 5rem 0 3.5rem; }
@@ -683,13 +609,10 @@ a:hover { text-decoration: underline; }
     font-size: 0.72rem;
   }
   .venue-badge .dot { display: none; }
-  .cards-4 { grid-template-columns: 1fr; }
   .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
-  .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
   .chart-block { padding: 1.1rem; }
-  .abstract-text { text-align: left; }
   .nav-cta { display: none; }
 }
 
