@@ -382,6 +382,46 @@ a:hover { text-decoration: underline; }
 }
 .whats-new p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
 
+/* "For more details" — a paper reference index: each row led by a monospace figure/table tag,
+   deliberately different from the numbered .whats-new grid (it reads as an index into the paper). */
+.paper-index {
+  list-style: none;
+  margin: 2.4rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.paper-index li {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.ref-tag {
+  display: inline-block;
+  align-self: start;
+  margin-top: 0.15rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.16);
+  border-radius: 8px;
+  padding: 0.35rem 0.65rem;
+  line-height: 1.4;
+}
+.paper-index-body h3 {
+  font-family: var(--font-head);
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--fg);
+}
+.paper-index-body p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
+
 /* Figures */
 .figure {
   margin: 2.2rem 0;
@@ -634,6 +674,9 @@ a:hover { text-decoration: underline; }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
   .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
+  /* Stack the reference tag above the text on narrow screens */
+  .paper-index li { grid-template-columns: 1fr; gap: 0.7rem; }
+  .ref-tag { margin-top: 0; justify-self: start; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
