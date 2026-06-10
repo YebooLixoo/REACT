@@ -382,6 +382,57 @@ a:hover { text-decoration: underline; }
 }
 .whats-new p { margin: 0; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
 
+/* "For more details" — vertical roadmap: numbered milestone nodes on a connecting line, framing
+   the four topics as the path the paper walks through. Distinct from the 2x2 .whats-new grid. */
+.roadmap {
+  list-style: none;
+  counter-reset: rm;
+  margin: 2.4rem 0 0;
+  padding: 0;
+}
+.roadmap li {
+  position: relative;
+  padding: 0 0 2.4rem 4.25rem;
+}
+.roadmap li:last-child { padding-bottom: 0; }
+.roadmap li::after { /* connecting line from this node down to the next */
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: 2.5rem;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+  transform: translateX(-50%);
+}
+.roadmap li:last-child::after { display: none; }
+.roadmap li::before { /* numbered milestone node */
+  counter-increment: rm;
+  content: counter(rm, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 50%;
+}
+.roadmap h3 {
+  font-family: var(--font-head);
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin: 0.5rem 0 0.4rem;
+  color: var(--fg);
+}
+.roadmap p { margin: 0; max-width: 46rem; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
+
 /* Figures */
 .figure {
   margin: 2.2rem 0;
@@ -634,6 +685,7 @@ a:hover { text-decoration: underline; }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
   .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
+  .roadmap li { padding-left: 3.5rem; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
