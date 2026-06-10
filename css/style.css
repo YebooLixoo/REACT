@@ -392,7 +392,7 @@ a:hover { text-decoration: underline; }
 }
 .roadmap li {
   position: relative;
-  padding: 0 0 2.4rem 4.25rem;
+  padding: 0 0 2.4rem 3.25rem;
 }
 .roadmap li:last-child { padding-bottom: 0; }
 .roadmap li::after { /* connecting line from this node down to the next */
@@ -431,7 +431,7 @@ a:hover { text-decoration: underline; }
   margin: 0.5rem 0 0.4rem;
   color: var(--fg);
 }
-.roadmap p { margin: 0; max-width: 46rem; color: var(--fg-soft); font-size: 0.95rem; line-height: 1.65; }
+.roadmap p { margin: 0; color: var(--fg-soft); font-size: 0.9rem; line-height: 1.65; }
 
 /* Figures */
 .figure {
@@ -685,7 +685,6 @@ a:hover { text-decoration: underline; }
   .venue-badge .dot { display: none; }
   .cards-4 { grid-template-columns: 1fr; }
   .whats-new { grid-template-columns: 1fr; gap: 1.7rem; }
-  .roadmap li { padding-left: 3.5rem; }
   .metrics-grid { grid-template-columns: 1fr; }
   .chart-wrap { height: 320px; }
   .chart-wrap-doughnut { height: 400px; } /* keep doughnut + right legend breathing room on phones */
