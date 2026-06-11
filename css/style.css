@@ -490,35 +490,6 @@ a:hover { text-decoration: underline; }
 .data-fallback th { background: var(--surface); font-weight: 700; }
 .data-fallback tbody tr:nth-child(even) { background: var(--surface); }
 
-/* ============================ VIDEO PLACEHOLDER ============================ */
-.video-placeholder {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius);
-  border: 2px dashed #cbd5e1;
-  background:
-    repeating-linear-gradient(45deg, var(--surface) 0 12px, #fff 12px 24px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  overflow: hidden;
-}
-.video-placeholder-inner { text-align: center; color: var(--muted); }
-.play-badge {
-  width: 64px; height: 64px;
-  margin: 0 auto 1rem;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; padding-left: 4px;
-  box-shadow: var(--shadow);
-}
-.vp-title { font-family: var(--font-head); font-weight: 700; color: var(--fg-soft); font-size: 1.1rem; margin: 0; }
-.vp-sub { font-size: 0.88rem; margin: 0.3rem 0 0; }
-
 /* ============================ BIBTEX ============================ */
 .bibtex-block {
   position: relative;
