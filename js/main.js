@@ -74,7 +74,8 @@
 
   /* ---------------- Metric count-up ---------------- */
   var counters = Array.prototype.slice.call(document.querySelectorAll(".count"));
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduceMotion = motionMq.matches;
 
   function animateCount(el) {
     var target = parseFloat(el.dataset.target);
@@ -108,6 +109,60 @@
     counters.forEach(function (c) {
       c.textContent = parseFloat(c.dataset.target).toFixed(parseInt(c.dataset.decimals || "0", 10));
     });
+  }
+
+  /* ---------------- Demo video: muted-autoplay when scrolled into view ---------------- */
+  var demoVideo = document.getElementById("introVideo");
+  // Hooks the lightbox calls so audio never leaks from the inert <main> behind the modal.
+  var pauseDemoForOverlay = null, resumeDemoAfterOverlay = null;
+  if (demoVideo && "IntersectionObserver" in window) {
+    demoVideo.muted = true; // required for programmatic autoplay under browser policies
+    var userPaused = false;       // viewer hit pause — don't auto-resume on re-scroll (WCAG 2.2.2)
+    var suppressPauseFlag = false; // true while WE pause (off-screen/overlay) so it isn't read as user intent
+    var inView = false;
+
+    function autoPlay() {
+      if (userPaused || motionMq.matches) return; // honor explicit pause + live reduced-motion
+      var p = demoVideo.play();
+      if (p && p.catch) p.catch(function () {}); // swallow autoplay-policy rejection
+    }
+    function autoPause() {
+      suppressPauseFlag = true;
+      demoVideo.pause();
+      suppressPauseFlag = false;
+    }
+
+    // A pause we didn't initiate (and that isn't end-of-clip) means the viewer took control.
+    demoVideo.addEventListener("pause", function () {
+      if (!suppressPauseFlag && !demoVideo.ended) userPaused = true;
+    });
+    demoVideo.addEventListener("play", function () { userPaused = false; });
+    // Narration is baked into the pixels; once unmuted, play through once instead of re-looping audio.
+    demoVideo.addEventListener("volumechange", function () { demoVideo.loop = demoVideo.muted; });
+
+    // threshold 0 → fires for any visibility, so it triggers even when the video is taller than the viewport.
+    var vObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        inView = e.isIntersecting;
+        if (e.isIntersecting) autoPlay();
+        else autoPause();
+      });
+    }, { threshold: 0 });
+    vObs.observe(demoVideo);
+
+    // Respect a reduced-motion preference toggled after load (the load-time snapshot isn't enough).
+    var onMotion = function () { if (motionMq.matches) autoPause(); else if (inView) autoPlay(); };
+    if (motionMq.addEventListener) motionMq.addEventListener("change", onMotion);
+    else if (motionMq.addListener) motionMq.addListener(onMotion);
+
+    pauseDemoForOverlay = function () {
+      var wasPlaying = !demoVideo.paused;
+      autoPause(); // programmatic — must not be mistaken for a user pause
+      return wasPlaying;
+    };
+    resumeDemoAfterOverlay = function (wasPlaying) {
+      if (wasPlaying && inView) autoPlay();
+    };
   }
 
   /* ---------------- Copy BibTeX ---------------- */
@@ -144,6 +199,7 @@
   var lightboxImg = document.getElementById("lightboxImg");
   var lightboxClose = document.getElementById("lightboxClose");
   var lastFocused = null;
+  var videoWasPlaying = false; // restore demo-video playback state across a lightbox open/close
   // Top-level regions to hide from assistive tech and disable while the modal is open,
   // so the dialog's aria-modal contract holds for SR virtual cursors too.
   var bgRegions = Array.prototype.slice.call(
@@ -161,6 +217,8 @@
     lightboxImg.src = src; lightboxImg.alt = alt || "";
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
+    // Pause the demo video before <main> goes inert, so no audio plays from an unreachable region.
+    if (pauseDemoForOverlay) videoWasPlaying = pauseDemoForOverlay();
     setBackgroundInert(true);
     lightboxClose.focus();
   }
@@ -169,6 +227,7 @@
     lightbox.hidden = true; lightboxImg.src = "";
     document.body.style.overflow = "";
     setBackgroundInert(false);
+    if (resumeDemoAfterOverlay) resumeDemoAfterOverlay(videoWasPlaying);
     if (lastFocused && lastFocused.focus) lastFocused.focus();
   }
   if (lightbox) {

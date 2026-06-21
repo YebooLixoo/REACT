@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,500,600,700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=22" />
+  <link rel="stylesheet" href="css/style.css?v=23" />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -176,16 +176,16 @@
         Here's REACT side-by-side with the leading V2X planners across eight accident-prone scenes.
       </p>
 
-      <!--
-        ============================================================
-        DEMO VIDEO HOOK: drop the reel in here when ready.
-        Option A (self-hosted file):
-          <video controls poster="static/images/fig1_overview.png" style="width:100%;height:100%">
-            <source src="static/video/demo.mp4" type="video/mp4" />
-          </video>
-        Option B (YouTube/Vimeo): an <iframe ... allowfullscreen></iframe>
-        ============================================================
-      -->
+      <!-- Intro reel: muted-autoplays when scrolled into view (see main.js); controls let viewers unmute/scrub. -->
+      <div class="demo-video">
+        <video id="introVideo" muted loop playsinline controls preload="metadata"
+               aria-label="REACT introduction video">
+          <source src="static/video/REACT_intro_video.mp4" type="video/mp4" />
+          Your browser doesn&rsquo;t support embedded video.
+          <a href="static/video/REACT_intro_video.mp4">Download the REACT intro video</a>.
+        </video>
+      </div>
+
       <figure class="figure figure-wide">
         <img src="static/images/fig4_qualitative.png" alt="Eight bird's-eye-view panels comparing predicted trajectories. REACT trajectories anticipate accidents earlier and steer or stop more smoothly than V2X-ViT, DiscoNet and CoBEVT, staying closer to the ground-truth safe path and away from threat trajectories." class="zoomable" />
         <figcaption><strong>REACT vs. DiscoNet, V2X-ViT and CoBEVT</strong> across eight accident-prone scenes. REACT (blue)
@@ -294,6 +294,6 @@
 
   <script src="js/chart.umd.min.js"></script>
   <script src="js/charts.js?v=4"></script>
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

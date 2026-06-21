@@ -490,6 +490,21 @@ a:hover { text-decoration: underline; }
 .data-fallback th { background: var(--surface); font-weight: 700; }
 .data-fallback tbody tr:nth-child(even) { background: var(--surface); }
 
+/* ============================ DEMO VIDEO ============================ */
+.demo-video {
+  margin: 2rem 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #000;
+}
+.demo-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* reserve space before metadata loads → no layout shift */
+}
+
 /* ============================ BIBTEX ============================ */
 .bibtex-block {
   position: relative;
