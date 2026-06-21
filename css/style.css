@@ -309,6 +309,15 @@ a:hover { text-decoration: underline; }
   font-size: 1.02rem;
 }
 
+/* Lead-in that introduces the qualitative figure: sits close above it, set apart from the video. */
+.figure-intro {
+  text-align: left;
+  color: var(--fg-soft);
+  margin: 2.6rem 0 0.6rem;
+  font-size: 1.02rem;
+}
+.figure-intro + .figure { margin-top: 0; }
+
 .footer-keywords {
   margin: 0.7rem 0 0;
   font-size: 0.8rem;
