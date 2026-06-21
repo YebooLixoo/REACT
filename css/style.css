@@ -317,6 +317,9 @@ a:hover { text-decoration: underline; }
   font-size: 1.02rem;
 }
 .figure-intro + .figure { margin-top: 0; }
+/* The demo lead introduces the video right below it — give it the same 0.6rem hug as the figure intro. */
+.video-lead { margin-bottom: 0.6rem; }
+.video-lead + .demo-video { margin-top: 0; }
 
 .footer-keywords {
   margin: 0.7rem 0 0;
